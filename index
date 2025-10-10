@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jornada Materna - UniSales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Paleta de Cores Inspirada no Flyer */
+        :root {
+            --color-primary: #8B455E;   /* Vinho/Rosa Escuro (Textos e Destaques) */
+            --color-secondary: #CE93A8; /* Rosa Queimado (Bordas e Subtítulos) */
+            --color-background: #F9F3F6;/* Quase Branco/Floral Suave (Fundo) */
+            --color-light: #FFF7F9;     /* Branco Sujo (Fundo de Itens) */
+            --color-text: #333333;      /* Preto Suave */
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            position: relative; /* Base para o posicionamento absoluto da ilustração */
+            min-height: 100vh;
+            overflow-x: hidden; 
+        }
+
+        /* --- Tipografia --- */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5em; 
+            color: var(--color-primary);
+            font-weight: 700;
+            margin-bottom: 0.1em;
+            text-transform: capitalize;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-secondary);
+            text-align: center;
+            margin-bottom: 2em;
+            font-size: 2.5em;
+            border-bottom: 3px solid var(--color-secondary);
+            padding-bottom: 0.5em;
+            display: inline-block;
+        }
+        .topics-section h2 {
+            margin: 0 auto 2em auto;
+            display: block;
+            width: fit-content;
+        }
+
+        h3 {
+            color: var(--color-primary);
+            font-size: 1.4em;
+            margin-top: 0;
+            border-bottom: 1px dashed var(--color-secondary);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* --- Cabeçalho (Header) --- */
+        header {
+            background: linear-gradient(180deg, var(--color-background) 0%, var(--color-light) 100%);
+            /* AJUSTE CHAVE: Diminuído o padding vertical para subir o título */
+            padding: 20px 20px 10px; 
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 10; 
+        }
+
+        .event-info {
+            font-size: 1.1em;
+            color: var(--color-primary);
+            font-weight: 400;
+            margin-top: -10px;
+        }
+
+        .subtitle {
+            font-size: 1em;
+            color: var(--color-text);
+            margin-top: 20px; 
+            font-style: italic;
+        }
+
+        /* --- Conteúdo Principal (Main) --- */
+        main {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 5;
+        }
+
+        section {
+            margin-bottom: 80px;
+            padding: 30px;
+            border-radius: 15px;
+            background-color: #ffffff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- Seção de Temas (Topics) --- */
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .topic-item {
+            background-color: var(--color-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--color-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .topic-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            background-color: #f7f0f2;
+        }
+
+        /* --- Galeria de Fotos (Gallery) --- */
+        .gallery-intro {
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+            color: var(--color-secondary);
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.95);
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.8);
+        }
+
+        /* Legenda da Foto (Efeito Overlay) */
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(139, 69, 94, 0.85);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 700;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .photo-item:hover .photo-caption {
+            transform: translateY(0);
+        }
+
+        /* --- Rodapé (Footer) --- */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: var(--color-primary);
+            color: var(--color-background);
+            font-size: 0.9em;
+            margin-top: 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ESTILO PARA A ILUSTRAÇÃO */
+        .background-illustration {
+            position: absolute; /* ROLA COM O CONTEÚDO! */
+            top: 210px; /* AJUSTE: Compensado o header mais curto (posição inicial) */
+            right: -10px; 
+            max-width: 500px; /* AJUSTE CHAVE: Imagem maior (mais para baixo) */
+            height: auto; 
+            width: auto; 
+            pointer-events: none;
+            transform: none; 
+            opacity: 0.7; 
+            z-index: 1; 
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
+            box-sizing: border-box; 
+        }
+
+
+        /* --- Responsividade --- */
+        /* Ajustes para telas maiores que 1200px */
+        @media (min-width: 1200px) {
+            .background-illustration {
+                max-width: 600px; /* AJUSTE CHAVE: Imagem ainda maior em telas grandes */
+                top: 230px; 
+                right: -20px;
+            }
+        }
+        
+        /* Esconde a ilustração em telas menores que 900px */
+        @media (max-width: 900px) {
+            .background-illustration {
+                display: none; 
+            }
+        }
+        
+        /* Ajustes para telas muito pequenas */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3em;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            .topic-grid, .photo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                /* AJUSTE: Diminuído o padding do header para telas pequenas também */
+                padding: 20px 10px 10px; 
+            }
+
+             .background-illustration {
+                /* Diminuída a imagem em telas muito pequenas para evitar poluição */
+                max-width: 350px; 
+                top: 170px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <img src="image_d29494.png" alt="Ilustração de uma gestante feliz segurando um copo" class="background-illustration">
+
+    <header class="floral-background">
+        <div class="header-content">
+            <h1>Jornada Materna</h1>
+            <p class="event-info">Um encontro pensado para a sua família</p>
+            <p class="subtitle">Elaborado pelo 6º período do curso de <strong>Enfermagem UniSales.</strong></p>
+        </div>
+    </header>
+
+    <main>
+        <section id="temas" class="topics-section">
+            <h2>Fique por dentro dos assuntos!</h2>
+
+            <div class="topic-grid">
+                <div class="topic-item">
+                    <h3>Primeiros socorros com o bebê</h3>
+                    <p>Foco nas orientações essenciais para lidar com <strong>situações de emergência</strong>, como engasgos e febres, oferecendo segurança e tranquilidade aos pais nos primeiros meses de vida do bebê.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Nutrição Materno-Infantil</h3>
+                    <p>Discussão sobre a importância da <strong>alimentação</strong> durante a gestação e o puerpério, além das diretrizes nutricionais para a introdução alimentar e o desenvolvimento saudável do bebê.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Amamentação</h3>
+                    <p>Abordagem completa sobre os <strong>benefícios, técnicas corretas</strong> e o manejo de dificuldades, incentivando o vínculo e a saúde da mãe e do bebê.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Cuidados com recém-nascido e Pós-Parto</h3>
+                    <p>Orientações práticas sobre banho, troca de fraldas, <strong>sono seguro</strong>, e um olhar atencioso para a saúde física e emocional da mulher no período do pós-parto.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Arte Gestacional</h3>
+                    <p>Atividades criativas e emocionais para <strong>celebrar e registrar o momento</strong> único da gestação, promovendo o bem-estar e o autoconhecimento da futura mamãe.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Plano de Parto</h3>
+                    <p>Orientações sobre como elaborar um documento que expresse os <strong>desejos e preferências</strong> da gestante em relação ao parto e nascimento, promovendo o protagonismo da mulher.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="fotos" class="gallery-section">
+            <h2>Registros da Jornada</h2>
+            <p class="gallery-intro">Reviva os momentos de aprendizado e conexão do nosso encontro.</p>
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <img src="caminho/para/sua-foto-1.jpg" alt="Foto da palestra sobre Nutrição">
+                    <div class="photo-caption">Palestra sobre Nutrição Materna</div>
+                </div>
+                <div class="photo-item">
+                    <img src="caminho/para/sua-foto-2.jpg" alt="Momento da Roda de Conversa">
+                    <div class="photo-caption">Roda de Conversa sobre Pós-Parto</div>
+                </div>
+                <div class="photo-item">
+                    <img src="caminho/para/sua-foto-3.jpg" alt="Oficina de Artes Gestacionais">
+                    <div class="photo-caption">Oficina de Arte Gestacional</div>
+                </div>
+                <div class="photo-item">
+                    <img src="caminho/para/sua-foto-4.jpg" alt="Prática de cuidados com o recém-nascido">
+                    <div class="photo-caption">Prática: Cuidados com o Bebê</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 202 Jornada Materna | Realização: Curso de Enfermagem UniSales.</p>
+    </footer>
+
+</body>
+</html>
