@@ -1,202 +1,190 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALINYFILM.CO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Cormorant+Garamond:ital,wght@0,300;0,… rel="stylesheet">
-    
-    <style>
-        :root {
-            --terracota: #892f1a;
-            --bege: #d2c8be;
-            --marfim: #fdfaf5;
-            --cinza: #c4c4c4;
-        }
- 
-        /* --- GERAL --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
-        
-        html { 
-            scroll-snap-type: y mandatory; 
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
- 
-        body { 
-            background-color: var(--marfim); 
-            font-family: 'Questrial', sans-serif; 
-            color: var(--terracota); 
-        }
- 
-        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
- 
-        /* --- CURSOR (CORRIGIDO) --- */
-        #cursor {
-            position: fixed; width: 35px; height: 35px; z-index: 10000;
-            transform: translate(-50%, -50%); pointer-events: none;
-            transition: transform 0.1s ease;
-        }
-        .cursor-svg { 
-            fill: var(--terracota); /* Cor padrão solicitada */
-            animation: rotate 12s linear infinite; 
-            transition: fill 0.3s ease;
-        }
- 
-        /* --- NAVEGAÇÃO --- */
-        .nav-dots {
-            position: fixed; right: 30px; top: 50%; transform: translateY(-50%);
-            z-index: 1000; display: flex; flex-direction: column; gap: 20px;
-        }
-        .dot { 
-            width: 8px; height: 8px; border: 1px solid var(--terracota); 
-            border-radius: 50%; transition: all 0.4s ease; cursor: pointer !important;
-        }
-        .dot.active { background: var(--terracota); transform: scale(1.8); }
- 
-        /* --- SEÇÕES --- */
-        section {
-            height: 100vh; width: 100vw;
-            scroll-snap-align: start; scroll-snap-stop: always;
-            position: relative; overflow: hidden;
-            display: flex; flex-direction: column; justify-content: center;
-        }
- 
-        /* --- 1. HERO --- */
-        .hero { align-items: center; text-align: center; }
-        .hero-sun-bg {
-            position: absolute; width: 65vh; height: 65vh;
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-            z-index: 0; opacity: 0.1; color: var(--terracota);
-            animation: rotate-hero 60s linear infinite;
-        }
-        .hero-content { z-index: 1; }
-        .hero h1 { font-size: clamp(4rem, 16vw, 13rem); line-height: 0.85; font-weight: 400; letter-spacing: -0.03em; }
-        .hero h1 span { font-style: italic; font-weight: 300; }
-        .hero-subtitle { margin-top: 40px; font-size: 0.85rem; letter-spacing: 6px; text-transform: uppercase; color: var(--bege); }
- 
-        /* --- 2. O OLHAR --- */
-        .bio-section { background: var(--bege); padding: 0 10%; }
-        .bio-container { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
-        .bio-text h2 { font-size: 3.5rem; margin-bottom: 20px; }
-        .edu-sidebar { border-left: 1px solid rgba(137, 47, 26, 0.2); padding-left: 30px; }
- 
-        /* --- 3. REGISTROS VIVOS (TERRACOTA) --- */
-        .gallery-section { background: var(--terracota); color: var(--marfim); padding: 0 5%; }
-        .gallery-wrap { display: flex; height: 60vh; gap: 15px; width: 100%; }
-        .frame { flex: 1; height: 100%; border-radius: 4px; overflow: hidden; position: relative; transition: flex 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
-        .frame:hover { flex: 4; }
-        .frame img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
-        .frame:hover img { opacity: 1; }
- 
-        /* --- 4. FOOTER --- */
-        .footer { text-align: center; align-items: center; }
-        .footer-sun { width: 50px; height: 50px; margin-bottom: 30px; color: var(--terracota); animation: rotate 20s linear infinite; }
-        .btn-cta { font-family: 'Cormorant Garamond'; font-size: 1.8rem; font-style: italic; color: var(--terracota); text-decoration: none; border-bottom: 1px solid var(--terracota); }
- 
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes rotate-hero { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
- 
-        @media (max-width: 768px) {
-            .bio-container { grid-template-columns: 1fr; }
-            .gallery-wrap { flex-direction: column; }
-            .nav-dots { display: none; }
-        }
-    </style>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ALINYFILM.CO | Visual Storyteller</title>
+   <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&display=swap" rel="stylesheet">
+   
+   <style>
+       :root {
+           --primary: #892F1A;
+           --secondary: #D2C8BE;
+           --bg: #FDFAF5;
+           --white: #FFFFFF;
+       }
+
+       * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
+       body { background-color: var(--bg); font-family: 'Questrial', sans-serif; overflow: hidden; color: var(--primary); }
+
+       /* CURSOR SOLZINHO (ASSINATURA) */
+       #cursor {
+           position: fixed; width: 40px; height: 40px; z-index: 10000;
+           transform: translate(-50%, -50%); pointer-events: none;
+       }
+       .sun-svg { fill: var(--primary); animation: rotate 20s linear infinite; }
+       @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+       /* HEADER FIXO CHIQUE */
+       header {
+           position: fixed; top: 0; width: 100%; padding: 40px 60px;
+           display: flex; justify-content: space-between; align-items: center; z-index: 100;
+       }
+       .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; letter-spacing: 5px; }
+       .nav-label { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--secondary); }
+
+       /* ESTRUTURA DE REGISTROS VIVOS (A GALERIA É O SITE) */
+       main {
+           display: flex;
+           width: 100vw;
+           height: 100vh;
+           padding: 120px 40px 60px 40px;
+           gap: 15px;
+       }
+
+       .living-frame {
+           position: relative;
+           flex: 1;
+           height: 100%;
+           border-radius: 15px;
+           overflow: hidden;
+           transition: flex 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+           background-color: var(--secondary);
+           display: flex;
+           align-items: flex-end;
+       }
+
+       .living-frame:hover {
+           flex: 5; /* O efeito que você gostou: ele expande e domina a tela */
+       }
+
+       .living-frame video, .living-frame img {
+           position: absolute; top: 0; left: 0;
+           width: 100%; height: 100%; object-fit: cover;
+           filter: brightness(0.7) saturate(0.8);
+           transition: 0.5s;
+       }
+
+       .living-frame:hover video, .living-frame:hover img {
+           filter: brightness(0.9) saturate(1);
+       }
+
+       /* CONTEÚDO DENTRO DOS CARDS */
+       .frame-content {
+           position: relative;
+           padding: 40px;
+           width: 100%;
+           opacity: 0;
+           transform: translateY(20px);
+           transition: 0.5s 0.3s; /* Delay para aparecer após expandir */
+           color: var(--bg);
+       }
+
+       .living-frame:hover .frame-content {
+           opacity: 1;
+           transform: translateY(0);
+       }
+
+       .frame-content h2 { 
+           font-family: 'Cormorant Garamond', serif; 
+           font-size: 3rem; margin-bottom: 10px; 
+           text-transform: uppercase;
+       }
+
+       .frame-content p { font-size: 0.9rem; max-width: 400px; line-height: 1.6; }
+
+       /* ESTILIZAÇÃO ESPECÍFICA POR CARD (COLOR BLOCKING DISCRETO) */
+       .f-bio { background-color: var(--primary); }
+       .f-edu { background-color: var(--secondary); }
+       .f-work { background-color: #3a2e28; }
+
+       /* BOTÃO DE CONTATO FLUTUANTE */
+       .cta-float {
+           position: fixed; bottom: 40px; right: 60px;
+           padding: 15px 35px; border-radius: 50px;
+           background: var(--primary); color: var(--bg);
+           text-decoration: none; font-size: 0.8rem; letter-spacing: 2px;
+           z-index: 200; transition: 0.3s;
+       }
+       .cta-float:hover { transform: scale(1.05); background: var(--text); }
+
+       /* MOBILE */
+       @media (max-width: 768px) {
+           main { flex-direction: column; overflow-y: auto; height: auto; }
+           .living-frame { min-height: 400px; flex: none; }
+           .living-frame:hover { flex: none; }
+           .frame-content { opacity: 1; transform: translateY(0); }
+           header { padding: 20px; }
+       }
+   </style>
 </head>
 <body>
- 
-    <div id="cursor">
-        <svg class="cursor-svg" viewBox="0 0 100 100">
-            <path d="M50 0 L56 35 L88 12 L65 44 L100 50 L65 56 L88 88 L56 65 L50 100 L44 65 L12 88 L35 56 L0 50 L35 44 L12 12 L44 35 Z"/>
-        </svg>
-    </div>
- 
-    <div class="nav-dots">
-        <div class="dot active" onclick="scrollToSection(0)"></div>
-        <div class="dot" onclick="scrollToSection(1)"></div>
-        <div class="dot" onclick="scrollToSection(2)"></div>
-        <div class="dot" onclick="scrollToSection(3)"></div>
-    </div>
- 
-    <section class="hero">
-        <div class="hero-sun-bg"><svg viewBox="0 0 100 100"><path fill="currentColor" d="M50 0 L56 35 L88 12 L65 44 L100 50 L65 56 L88 88 L56 65 L50 100 L44 65 L12 88 L35 56 L0 50 L35 44 L12 12 L44 35 Z"/></svg></div>
-        <div class="hero-content">
-            <h1>ALINY<br><span>FILM.CO</span></h1>
-            <p class="hero-subtitle">Mobile Filmmaker • Storymaker</p>
-        </div>
-    </section>
- 
-    <section class="bio-section">
-        <div class="bio-container">
-            <div class="bio-text">
-                <h2>O Olhar</h2>
-                <p>Nascida em Vila Velha, transformo histórias em registros vivos. O essencial nem sempre é visto — mas pode ser guardado quando alguém escolhe observar.</p>
-            </div>
-            <div class="edu-sidebar">
-                <div class="edu-item">
-                    <span>Background Humano</span>
-                    <h3>Enfermagem</h3>
-                </div>
-                <div class="edu-item" style="margin-top:20px">
-                    <span>Background Técnico</span>
-                    <h3>Segurança do Trabalho</h3>
-                </div>
-            </div>
-        </div>
-    </section>
- 
-    <section class="gallery-section">
-        <div class="gallery-wrap">
-            <div class="frame"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80">… style="position:absolute; bottom:20px; left:20px; font-family:Cormorant Garamond; font-size:2rem;">Fashion</div></div>
-            <div class="frame"><img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80">… style="position:absolute; bottom:20px; left:20px; font-family:Cormorant Garamond; font-size:2rem;">Eventos</div></div>
-            <div class="frame"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80">… style="position:absolute; bottom:20px; left:20px; font-family:Cormorant Garamond; font-size:2rem;">Branding</div></div>
-        </div>
-    </section>
- 
-    <section class="footer">
-        <div class="footer-sun"><svg viewBox="0 0 100 100"><path fill="currentColor" d="M50 0 L56 35 L88 12 L65 44 L100 50 L65 56 L88 88 L56 65 L50 100 L44 65 L12 88 L35 56 L0 50 L35 44 L12 12 L44 35 Z"/></svg></div>
-        <h2>Vamos contar sua história?</h2>
-        <a href="https://wa.me/SEUNUMERO" class="btn-cta">Solicitar Orçamento ➔</a>
-    </section>
- 
-    <script>
-        const cursor = document.getElementById('cursor');
-        const sunSvg = document.querySelector('.cursor-svg');
-        const dots = document.querySelectorAll('.dot');
-        const sections = document.querySelectorAll('section');
- 
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
- 
-        function scrollToSection(index) { sections[index].scrollIntoView({ behavior: 'smooth' }); }
- 
-        window.addEventListener('scroll', () => {
-            let current = 0;
-            sections.forEach((section, index) => {
-                if (pageYOffset >= section.offsetTop - section.clientHeight / 3) current = index;
-            });
- 
-            dots.forEach(d => d.classList.remove('active'));
-            dots[current].classList.add('active');
- 
-            // LÓGICA DO CURSOR: Muda para marfim na seção Terracota (index 2)
-            if (current === 2) {
-                sunSvg.style.fill = "#fdfaf5";
-                dots.forEach(d => {
-                    d.style.borderColor = "#fdfaf5";
-                    if(d.classList.contains('active')) d.style.backgroundColor = "#fdfaf5";
-                });
-            } else {
-                sunSvg.style.fill = "#892f1a";
-                dots.forEach(d => {
-                    d.style.borderColor = "#892f1a";
-                    if(d.classList.contains('active')) d.style.backgroundColor = "#892f1a";
-                });
-            }
-        });
-    </script>
+
+   <div id="cursor">
+       <svg class="sun-svg" viewBox="0 0 100 100">
+           <path d="M50 0 L56 35 L88 12 L65 44 L100 50 L65 56 L88 88 L56 65 L50 100 L44 65 L12 88 L35 56 L0 50 L35 44 L12 12 L44 35 Z"/>
+       </svg>
+   </div>
+
+   <header>
+       <div class="logo-text">ALINYFILM.CO</div>
+       <div class="nav-label">SERRA • ES</div>
+   </header>
+
+   <main>
+       <div class="living-frame f-bio">
+           <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80" alt="Aliny">
+           <div class="frame-content">
+               <h2>A Artista</h2>
+               <p>Nascida em Vila Velha, transformo o sentir em imagem. Do cuidado da saúde à precisão técnica, meu olhar é focado no que é essencial.</p>
+           </div>
+       </div>
+
+       <div class="living-frame f-edu">
+           <video autoplay muted loop playsinline src="https://assets.mixkit.co/videos/preview/mixkit-girl-filming-with-her-phone-a-street-in-paris-4860-large.mp4"></video>
+           <div class="frame-content">
+               <h2>O Repertório</h2>
+               <p>Técnica em Segurança do Trabalho e Bacharel em Enfermagem. Minha formação traz ética, presença e uma leitura de contexto única para o audiovisual.</p>
+           </div>
+       </div>
+
+       <div class="living-frame">
+           <video autoplay muted loop playsinline src="https://assets.mixkit.co/videos/preview/mixkit-hand-holding-smartphone-recording-a-video-of-a-beautiful-girl-35072-large.mp4"></video>
+           <div class="frame-content">
+               <h2>Social Content</h2>
+               <p>Estratégia e estética para marcas que desejam se destacar no digital com vídeos inovadores.</p>
+           </div>
+       </div>
+
+       <div class="living-frame">
+           <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80" alt="Trabalho">
+           <div class="frame-content">
+               <h2>Eventos</h2>
+               <p>Cobertura em tempo real com a agilidade do mobile e a qualidade do cinema.</p>
+           </div>
+       </div>
+
+       <div class="living-frame f-work">
+           <video autoplay muted loop playsinline src="https://assets.mixkit.co/videos/preview/mixkit-man-with-long-hair-and-sunglasses-4853-large.mp4"></video>
+           <div class="frame-content">
+               <h2>O Essencial</h2>
+               <p>"O essencial nem sempre é visto — mas pode ser guardado quando alguém escolhe observar."</p>
+           </div>
+       </div>
+   </main>
+
+   <a href="https://wa.me/SEUNUMERO" class="cta-float">CONTAR MINHA HISTÓRIA</a>
+
+   <script>
+       const cursor = document.getElementById('cursor');
+       document.addEventListener('mousemove', e => {
+           cursor.style.left = e.clientX + 'px';
+           cursor.style.top = e.clientY + 'px';
+       });
+
+       // Efeito de clique no cursor
+       document.addEventListener('mousedown', () => cursor.style.transform = 'translate(-50%, -50%) scale(0.7)');
+       document.addEventListener('mouseup', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
+   </script>
 </body>
 </html>
