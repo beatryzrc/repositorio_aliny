@@ -22,7 +22,7 @@
 
         /* CURSOR SOLZINHO */
         #cursor {
-            position: fixed; width: 40px; height: 20px; z-index: 10000;
+            position: fixed; width: 40px; height: 40px; z-index: 10000;
             transform: translate(-50%, -50%); pointer-events: none;
             transition: transform 0.1s ease;
         }
@@ -31,25 +31,32 @@
 
         /* HEADER FIXO */
         header {
-            position: fixed; top: 0; width: 100%; padding: 10px 25px;
-            display: flex; justify-content: flex-start; align-items: center; gap: 100px z-index: 100;
+            position: fixed; top: 0; width: 100%; padding: 20px 40px;
+            display: flex; justify-content: flex-start; align-items: center; 
+            gap: 40px; z-index: 100;
         }
         
-        /* AUMENTO DA LOGO */
         .logo-img {
-            height: 140px; /* Aumentado de 40px para 80px */
+            height: 140px; 
             width: auto;
             object-fit: contain;
         }
 
-        .nav-label { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--secondary); }
+        .nav-label { 
+            font-size: 0.7rem; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            color: var(--secondary);
+            margin-top: 15px;
+        }
 
         /* ESTRUTURA PRINCIPAL */
         main {
             display: flex;
             width: 100vw;
             height: 100vh;
-            padding: 140px 40px 60px 40px;
+            /* Espaço aumentado para a logo de 140px não sobrepor os cards */
+            padding: 220px 40px 80px 40px;
             gap: 15px;
         }
 
@@ -98,13 +105,22 @@
 
         .frame-content p { font-size: 0.9rem; max-width: 400px; line-height: 1.6; }
 
-        /* CORES ESPECÍFICAS */
+        /* CORES ESPECÍFICAS PARA TROCA DO CURSOR */
         .f-bio { background-color: var(--primary); }
         .f-work { background-color: #3a2e28; }
 
+        /* CRÉDITOS BR.LAB */
+        .footer-credits {
+            position: fixed; bottom: 45px; left: 40px;
+            font-size: 0.65rem; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--secondary);
+            z-index: 150;
+        }
+        .footer-credits span { font-weight: bold; color: var(--primary); }
+
         /* BOTÃO FLUTUANTE */
         .cta-float {
-            position: fixed; bottom: 40px; right: 60px;
+            position: fixed; bottom: 40px; right: 40px;
             padding: 15px 35px; border-radius: 50px;
             background: var(--primary); color: var(--bg);
             text-decoration: none; font-size: 0.8rem; letter-spacing: 2px;
@@ -114,10 +130,12 @@
 
         /* MOBILE */
         @media (max-width: 768px) {
-            main { flex-direction: column; overflow-y: auto; height: auto; padding-top: 120px; }
+            main { flex-direction: column; overflow-y: auto; height: auto; padding-top: 160px; }
             .living-frame { min-height: 400px; flex: none; }
-            .logo-img { height: 50px; }
-            header { padding: 20px; }
+            .logo-img { height: 60px; }
+            header { padding: 20px; gap: 20px; }
+            .footer-credits { position: static; padding: 20px; text-align: center; }
+            .nav-label { margin-top: 0; font-size: 0.6rem; }
         }
     </style>
 </head>
@@ -176,6 +194,10 @@
         </div>
     </main>
 
+    <div class="footer-credits">
+        © 2026 ALINYFILM.CO | MADE BY <span>BR.LAB</span>
+    </div>
+
     <a href="https://wa.me/SEUNUMERO" class="cta-float">CONTAR MINHA HISTÓRIA</a>
 
     <script>
@@ -183,22 +205,25 @@
         const sunPath = document.querySelector('.sun-svg');
         const frames = document.querySelectorAll('.living-frame');
 
+        // Seguir mouse
         document.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
+        // Efeito de clique
         document.addEventListener('mousedown', () => cursor.style.transform = 'translate(-50%, -50%) scale(0.7)');
         document.addEventListener('mouseup', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
 
+        // Troca de cor do cursor baseada no fundo
         frames.forEach(frame => {
             frame.addEventListener('mouseenter', () => {
                 if (frame.classList.contains('f-bio') || frame.classList.contains('f-work')) {
-                    sunPath.style.fill = 'var(--bg)';
+                    sunPath.style.fill = 'var(--bg)'; // Fica marfim em fundos escuros
                 }
             });
             frame.addEventListener('mouseleave', () => {
-                sunPath.style.fill = 'var(--primary)';
+                sunPath.style.fill = 'var(--primary)'; // Volta para o marrom avermelhado
             });
         });
     </script>
